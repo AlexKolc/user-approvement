@@ -1,0 +1,33 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+    <xhtml-macro name="modified-checkbox" class="com.atlassian.confluence.UserCheckboxMacro"
+                 key="user-checkbox">
+        <category name="formatting"/>
+        <parameters>
+            <parameter name="Username" type="username" required="true">
+                <option key="showNameInPlaceholder" value="false" />
+                <option key="showValueInPlaceholder" value="true" />
+            </parameter>
+        </parameters>
+    </xhtml-macro>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="modified-checkbox"/>
+
+    <!-- add our web resources -->
+    <web-resource key="modified-checkbox-resources" name="modified-checkbox Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <resource type="download" name="modified-checkbox.css" location="/css/modified-checkbox.css"/>
+        <resource type="download" name="modified-checkbox.js" location="/js/modified-checkbox.js"/>
+        <resource type="download" name="images/" location="/images"/>
+        <context>modified-checkbox</context>
+    </web-resource>
+</atlassian-plugin>
+

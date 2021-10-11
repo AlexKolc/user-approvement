@@ -7,13 +7,23 @@
         <param name="plugin-logo">images/pluginLogo.png</param>
     </plugin-info>
 
+    <ao key="ao-module">
+        <description>The module configuring the Active Objects service used by this plugin</description>
+        <entity>com.atlassian.confluence.ao.StateCheckbox</entity>
+    </ao>
+
+    <rest key="approvement-rest" path="/approvement" version="1.0" context="host:port">
+        <description>Rest-service: response on JS requests</description>
+    </rest>
+
+
     <xhtml-macro name="modified-checkbox" class="com.atlassian.confluence.UserCheckboxMacro"
                  key="user-checkbox">
         <category name="formatting"/>
         <parameters>
             <parameter name="Username" type="username" required="true">
-                <option key="showNameInPlaceholder" value="false" />
-                <option key="showValueInPlaceholder" value="true" />
+                <option key="showNameInPlaceholder" value="false"/>
+                <option key="showValueInPlaceholder" value="true"/>
             </parameter>
         </parameters>
     </xhtml-macro>

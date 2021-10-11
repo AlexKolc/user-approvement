@@ -1,0 +1,72 @@
+## Macro title: User Approvement
+##
+## Developed by: Alexandra Kolesova
+## Date created: 10/10/2021
+## Installed by: Alex
+
+## Parameter: username
+## @param Username:title=Username|type=username|required=true|desc=Enployee username
+
+##<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+##$webResourceManager.requireResource("com.atlassian.confluence.modified-checkbox:modified-checkbox-resources")
+###set($username=$paramUsername)
+###set($baseUrl=$generalUtil.getGlobalSettings().getBaseUrl())
+###set($path=$baseUrl + "/display/~" + $username)
+###set($confluenceActionSupport=$generalUtil.newWiredConfluenceActionSupport())
+###set($fullName=$confluenceActionSupport.getUserFullName($username))
+###set($currentUsername=$confluenceActionSupport.getAuthenticatedUser().getName())
+###set($userkey=$confluenceActionSupport.getUserByName($username).getKey().toString())
+###set($pageId=$conversionContext.getEntity().getId().toString)
+
+<div>
+
+    #if (${username} == ${currentUsername})
+        <input type="checkbox" id="user-checkbox" name="${username}" class="save-cb-state">
+        <a userkey="$userkey" data-linked-resource-default-alias="${fullname}"
+           class="confluence-link confluence-userlink user-mention current-user-mention" data-username="${username}"
+           data-linked-resource-version="2" data-linked-resource-type="userinfo"
+           href="/confluence/display/~${username}"
+           data-base-url="${baseUrl}"> ${fullname}
+        </a>
+    #else
+        <input type="checkbox" id="user-checkbox" name="${username}" class="save-cb-state" disabled>
+        <a userkey="${userkey}" data-linked-resource-default-alias="${fullname}"
+           class="confluence-userlink user-mention userlink-0" data-username="${username}"
+           data-linked-resource-version="2" data-linked-resource-type="userinfo"
+           href="/confluence/display/~${username}"
+           data-base-url="${baseUrl}"> ${fullname}
+        </a>
+    #end
+</div>
+##
+##<script>
+##    (function () {
+##        var pageId = AJS.params.pageId
+##        window.addEventListener('load', function () {
+##            cbstate = JSON.parse(localStorage[pageId] || '{}');
+##
+##            for (var i in cbstate) {
+##                var el = document.querySelector('input[name="' + i + '"]');
+##                if (el) el.checked = true;
+##            }
+##
+##            var cb = document.getElementsByClassName('save-cb-state');
+##
+##
+##            for (var i = 0; i < cb.length; i++) {
+##
+##                cb[i].addEventListener('click', function (evt) {
+##                    if (AJS.Meta.get(this.name) === 0) {
+##                        AJS.Meta.set(this.name, 1)
+##                    } else {
+##                        AJS.Meta.set(this.name, 0)
+##                    }
+##                });
+##            }
+##        });
+##    })();
+##</script>
+
+##--------------------------------------------------
+

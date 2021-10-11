@@ -17,8 +17,8 @@
     </rest>
 
 
-    <xhtml-macro name="modified-checkbox" class="com.atlassian.confluence.UserCheckboxMacro"
-                 key="user-checkbox">
+    <xhtml-macro name="user-approvement" class="com.atlassian.confluence.UserApprovementMacro"
+                 key="user-approvement">
         <category name="formatting"/>
         <parameters>
             <parameter name="Username" type="username" required="true">
@@ -32,10 +32,10 @@
     <resource type="i18n" name="i18n" location="modified-checkbox"/>
 
     <!-- add our web resources -->
-    <web-resource key="modified-checkbox-resources" name="modified-checkbox Web Resources">
+    <web-resource key="user-approvement-resources" name="modified-checkbox Web Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
-        <resource type="download" name="modified-checkbox.css" location="/css/modified-checkbox.css"/>
-        <resource type="download" name="modified-checkbox.js" location="/js/modified-checkbox.js"/>
+        <resource type="download" name="user-approvement.css" location="/css/user-approvement.css"/>
+        <resource type="download" name="user-approvement.js" location="/js/user-approvement.js"/>
         <resource type="download" name="images/" location="/images"/>
         <context>modified-checkbox</context>
     </web-resource>

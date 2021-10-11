@@ -16,14 +16,14 @@ import com.atlassian.webresource.api.assembler.PageBuilderService;
 import javax.inject.Inject;
 import java.util.Map;
 
-public class UserCheckboxMacro implements Macro {
+public class UserApprovementMacro implements Macro {
 
     private final ConfluenceActionSupport confluenceActionSupport;
     private final StateCheckboxService stateCheckboxService;
     private final PageBuilderService pageBuilderService;
 
     @Inject
-    public UserCheckboxMacro(StateCheckboxService stateCheckboxService, @ComponentImport PageBuilderService pageBuilderService) {
+    public UserApprovementMacro(StateCheckboxService stateCheckboxService, @ComponentImport PageBuilderService pageBuilderService) {
         this.stateCheckboxService = stateCheckboxService;
         this.confluenceActionSupport = GeneralUtil.newWiredConfluenceActionSupport();
         this.pageBuilderService = pageBuilderService;
@@ -52,7 +52,7 @@ public class UserCheckboxMacro implements Macro {
         veloContext.put("currentUsername", currentUsername);
         veloContext.put("userkey", userkey);
 
-        pageBuilderService.assembler().resources().requireWebResource("com.atlassian.confluence.modified-checkbox:modified-checkbox-resources");
+        pageBuilderService.assembler().resources().requireWebResource("com.atlassian.confluence.modified-checkbox:user-approvement-resources");
 
         return VelocityUtils.getRenderedTemplate("templates/user-approvement.vm", veloContext);
     }
